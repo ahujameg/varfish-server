@@ -208,6 +208,13 @@ watch(
           variantQueryStore.previousQueryDetails.query_settings.prio_enabled
         "
         @variant-selected="showDetails"
+        :face-enabled="
+          variantQueryStore.previousQueryDetails.query_settings.face_enabled
+        "
+        :prio-face="
+          variantQueryStore.previousQueryDetails.query_settings.prio_face
+        "
+        @variant-selected="showDetails"
       />
     </div>
     <div

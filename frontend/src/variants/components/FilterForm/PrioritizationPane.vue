@@ -9,10 +9,14 @@ const props = defineProps({
   filtrationComplexityMode: String,
   exomiserEnabled: Boolean,
   caddEnabled: Boolean,
+  cadaEnabled: Boolean,
   prioEnabled: Boolean,
   prioAlgorithm: String,
   prioHpoTerms: Array,
+  prioFace: String,
+  photoFile: String,
   pathoEnabled: Boolean,
+  faceEnabled: Boolean,
   pathoScore: String,
 })
 
@@ -20,14 +24,20 @@ const emit = defineEmits([
   'update:prioEnabled',
   'update:prioAlgorithm',
   'update:prioHpoTerms',
+  'update:prioFace',
+  'update:photoFile',
   'update:pathoEnabled',
+  'update:faceEnabled',
   'update:pathoScore',
 ])
 
 const prioEnabledWrapper = declareWrapper(props, 'prioEnabled', emit)
 const prioAlgorithmWrapper = declareWrapper(props, 'prioAlgorithm', emit)
 const prioHpoTermsWrapper = declareWrapper(props, 'prioHpoTerms', emit)
+const prioFaceWrapper = declareWrapper(props, 'prioFace', emit)
+const photoFileWrapper = declareWrapper(props, 'photoFile', emit)
 const pathoEnabledWrapper = declareWrapper(props, 'pathoEnabled', emit)
+const faceEnabledWrapper = declareWrapper(props, 'faceEnabled', emit)
 const pathoScoreWrapper = declareWrapper(props, 'pathoScore', emit)
 
 const prioEnabledWarning = () => {
@@ -40,9 +50,9 @@ defineExpose({ v$ })
 </script>
 
 <template>
-  <div class="row p-2">
-    <div class="col-6">
-      <h5 class="card-title">Phenotype Prioritization</h5>
+  <div class="row">
+    <div class="col-xs-6 col-sm-6">
+      <h5 class="card-title mb-0">Phenotype Prioritization</h5>
       <div
         v-if="prioEnabledWarning()"
         class="alert alert-warning mt-2 mb-0"
@@ -102,6 +112,7 @@ defineExpose({ v$ })
           <option value="hiphive-human">HiPhive (human only)</option>
           <option value="hiphive-mouse">HiPhive (human+mouse)</option>
           <option value="hiphive">HiPhive (human, mouse, fish, PPI)</option>
+          <option value="CADA" v-if="props.cadaEnabled">CADA</option>
         </select>
       </div>
       <div class="form-group pt-2">
@@ -110,50 +121,85 @@ defineExpose({ v$ })
       </div>
     </div>
 
-    <div v-if="props.caddEnabled" class="col-6">
-      <h5 class="card-title">Pathogenicity Prioritization</h5>
+    <div class="col-xs-6 col-sm-6">
+        <div>
+        <div v-if="props.caddEnabled">
+            <h5 class="card-title mb-0">Pathogenicity Prioritization</h5>
+            <div v-if="props.showFiltrationInlineHelp" class="alert alert-secondary small mt-2 mb-0 p-2">
+                    <i-mdi-information />
+                        Enable the pathogenicity-based priotization and (optionally) adjust the
+                        scoring method below.
+            </div>
+
+            <div class="custom-control custom-checkbox mt-2">
+                    <input
+                        id="patho-enabled"
+                        v-model="pathoEnabledWrapper"
+                        class="custom-control-input"
+                        type="checkbox"
+                    />
+                    <label class="custom-control-label" for="patho-enabled">
+                        Enable variant pathogenicity-based prioritization
+                    </label>
+                    <div class="form-text text-muted small">
+                        First try to filter your variants without pathogenicity-based
+                        prioritization before enabling it. Note well that only the first 5000
+                        variants returned by your query will be prioritized!
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label for="patho-score"> Pathogenicity Score </label>
+                    <select
+                        id="patho-score"
+                        v-model="pathoScoreWrapper"
+                        class="custom-select"
+                    >
+                    <option v-if="props.caddEnabled" value="cadd">CADD</option>
+                    </select>
+            </div>
+        </div>
+
+        <div v-else class="col-6 pt-3">
+                <h5 class="card-title mb-0">Pathogenicity Prioritization</h5>
+                <div class="mt-2 font-italic text-muted">
+                    No scoring method activated.
+                </div>
+        </div>
+        </div>
+        <div>
+      <h5 class="card-title mb-0">Face Prioritization</h5>
       <div
         v-if="props.showFiltrationInlineHelp"
         class="alert alert-secondary small mt-2 mb-0 p-2"
       >
         <i-mdi-information />
-        Enable the pathogenicity-based priotization and (optionally) adjust the
-        scoring method below.
+        Enable the face-based prioritization.
       </div>
 
       <div class="custom-control custom-checkbox mt-2">
         <input
-          id="patho-enabled"
-          v-model="pathoEnabledWrapper"
+          v-model="faceEnabledWrapper"
           class="custom-control-input"
           type="checkbox"
+          id="face-enabled"
         />
-        <label class="custom-control-label" for="patho-enabled">
-          Enable variant pathogenicity-based prioritization
+        <label class="custom-control-label" for="face-enabled">
+          Enable variant face-based prioritization
         </label>
-        <div class="form-text text-muted small">
-          First try to filter your variants without pathogenicity-based
-          prioritization before enabling it. Note well that only the first 5000
-          variants returned by your query will be prioritized!
+        <div id="PreviousImageModal" v-if=props.photoFile class="form-text text-muted small">
+
+            Last submitted image to GestaltMatcher : "{{props.photoFile}}
+
+        </div>
+        <div class="col-6 pt-3">
+            <iframe id="pediaFrame" src="http://127.0.0.1:7000/" height="140" width="500">
+            </iframe>
         </div>
       </div>
-      <div class="form-group pt-2">
-        <label for="patho-score"> Pathogenicity Score </label>
-        <select
-          id="patho-score"
-          v-model="pathoScoreWrapper"
-          class="custom-select"
-        >
-          <option v-if="props.caddEnabled" value="cadd">CADD</option>
-        </select>
-      </div>
     </div>
-    <div v-else class="col-6">
-      <h5 class="card-title mb-0">Pathogenicity Prioritization</h5>
-      <div class="mt-2 font-italic text-muted">
-        No scoring method activated.
-      </div>
     </div>
+
+
   </div>
 </template>
 
