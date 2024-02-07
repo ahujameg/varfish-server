@@ -191,7 +191,6 @@ class FilterBase:
         except ConnectionError as e:
             self.job.add_log_entry(e)
 
-
 class RowEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Decimal):

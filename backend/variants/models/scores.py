@@ -275,7 +275,6 @@ class RowWithPhenotypeScore(wrapt.ObjectProxy):
         else:
             return self.__wrapped__.__getitem__(key)
 
-
 class RowWithGestaltMatcherScore(wrapt.ObjectProxy):
     """Wrap a result row and add members for Gestalt Matcher score and rank."""
 
@@ -303,7 +302,6 @@ class RowWithGestaltMatcherScore(wrapt.ObjectProxy):
             return
         else:
             return self.__wrapped__.__getitem__(key)
-
 
 class RowWithPediaScore(wrapt.ObjectProxy):
     """Wrap a result row and add members for PEDIA score and rank."""
@@ -414,7 +412,6 @@ def annotate_with_gm_scores(rows, gm_scores):
             prev_gene = row.entrez_id
         row._self_gm_rank = rank
     return rows
-
 
 def annotate_with_pedia_scores(rows, pedia_scores):
     """Annotate the results in ``rows`` with PEDIA scores stored in ``small_variant_query``.

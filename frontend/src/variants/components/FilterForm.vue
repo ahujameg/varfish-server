@@ -302,9 +302,15 @@ const onSubmitCancelButtonClicked = () => {
               v-model:prio-hpo-terms="
                 variantQueryStore.querySettings.prio_hpo_terms
               "
-              v-model:prio-gm="variantQueryStore.querySettings.prio_gm"
-              v-model:photo-file="variantQueryStore.querySettings.photo_file"
-              v-model:gm-enabled="variantQueryStore.querySettings.gm_enabled"
+              v-model:prio-gm="
+                variantQueryStore.querySettings.prio_gm
+              "
+              v-model:photo-file="
+                variantQueryStore.querySettings.photo_file
+              "
+              v-model:gm-enabled="
+                variantQueryStore.querySettings.gm_enabled
+              "
               v-model:pedia-enabled="
                 variantQueryStore.querySettings.pedia_enabled
               "
