@@ -1,9 +1,9 @@
 import contextlib
+from decimal import Decimal
 import json
 
 from django.conf import settings
 from django.db import transaction
-from decimal import Decimal
 from projectroles.plugins import get_backend_api
 
 from variants.forms import PATHO_SCORES_MAPPING

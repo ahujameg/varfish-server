@@ -9,6 +9,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.forms import model_to_dict
 from django.utils.html import strip_tags
+import pandas as pd
 from projectroles.app_settings import AppSettingAPI
 from ext_gestaltmatcher.models import (
     SmallVariantQueryGestaltMatcherScores,
@@ -17,8 +18,8 @@ from ext_gestaltmatcher.models import (
 import requests
 from sqlalchemy.exc import NoSuchColumnError
 import wrapt
-import pandas as pd
 
+from ext_gestaltmatcher.models import SmallVariantQueryGestaltMatcherScores
 from varfish.utils import JSONField
 
 _app_settings = AppSettingAPI()
