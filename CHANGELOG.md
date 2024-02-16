@@ -93,6 +93,51 @@
 - Removing template settings in quality form tab (#825).
 - Removing gene blocklist from vue filter app (#823).
 
+## 0.1.0 (2023-04-03)
+
+
+### Features
+
+* add export for filter results to vue app ([#866](https://github.com/ahujameg/varfish-server/issues/866)) ([#876](https://github.com/ahujameg/varfish-server/issues/876)) ([33755d9](https://github.com/ahujameg/varfish-server/commit/33755d9b314aa2e65ee18641bac76b4b7b7425dc))
+* add genome browser to case details and sv modal ([#852](https://github.com/ahujameg/varfish-server/issues/852)) ([#853](https://github.com/ahujameg/varfish-server/issues/853)) ([28988cd](https://github.com/ahujameg/varfish-server/commit/28988cdfa1525957ba7b1621972c0051fe204027))
+* adding generic browser track capability and repeat tracks ([#857](https://github.com/ahujameg/varfish-server/issues/857)) ([38fcb98](https://github.com/ahujameg/varfish-server/commit/38fcb989c30878b492feb650bf28b45f31555bbc))
+* Adding presets to gene allowlist in vue filter app ([#824](https://github.com/ahujameg/varfish-server/issues/824)) ([#848](https://github.com/ahujameg/varfish-server/issues/848)) ([e31ee43](https://github.com/ahujameg/varfish-server/commit/e31ee43e94dd0d00d71f0bd1b424ae8787393235))
+* bump varfish server worker version to 0.5.0 (887) ([#888](https://github.com/ahujameg/varfish-server/issues/888)) ([afc4baf](https://github.com/ahujameg/varfish-server/commit/afc4baf0bfa27b7fbb0cae9e0eca08b60cddc4fe))
+* bumping varfish-server-worker ([#899](https://github.com/ahujameg/varfish-server/issues/899)) ([#904](https://github.com/ahujameg/varfish-server/issues/904)) ([a640fea](https://github.com/ahujameg/varfish-server/commit/a640feaf4f6e751ce910f4018954b40f79247198))
+* implement expert load/save for genotype criteria ([#872](https://github.com/ahujameg/varfish-server/issues/872)) ([#875](https://github.com/ahujameg/varfish-server/issues/875)) ([87f24b4](https://github.com/ahujameg/varfish-server/commit/87f24b4f89c1d8003d0c15217bea9be20567fbcb))
+* integrate variants/svs vuew apps into cases ([#843](https://github.com/ahujameg/varfish-server/issues/843)) ([#844](https://github.com/ahujameg/varfish-server/issues/844)) ([e0f671b](https://github.com/ahujameg/varfish-server/commit/e0f671bc8379c416a076f874c5b9686f0fcb3b8e))
+* interpret effective/compatible genotype info from worker ([#861](https://github.com/ahujameg/varfish-server/issues/861)) ([#865](https://github.com/ahujameg/varfish-server/issues/865)) ([2178238](https://github.com/ahujameg/varfish-server/commit/2178238593587f2c35b1552ba8630ced4910eb0e))
+* interpret SV breakpoint overlap with segmental duplications and repeats ([#859](https://github.com/ahujameg/varfish-server/issues/859)) ([#860](https://github.com/ahujameg/varfish-server/issues/860)) ([a8e233c](https://github.com/ahujameg/varfish-server/commit/a8e233c471a86d2a5572cc987fdc1979663f1b41))
+
+
+### Bug Fixes
+
+* cnv, genotype criteria and quick presets ([#858](https://github.com/ahujameg/varfish-server/issues/858)) ([c6d5e96](https://github.com/ahujameg/varfish-server/commit/c6d5e96fb24ac4a2d4bf739cd1acc675b4987896))
+* comments flags contains a perpetual spinning icon ([#893](https://github.com/ahujameg/varfish-server/issues/893)) ([#906](https://github.com/ahujameg/varfish-server/issues/906)) ([1ec0be4](https://github.com/ahujameg/varfish-server/commit/1ec0be4de9c0b5f779b07520660d8ddee5a54fd5))
+* confusing genomic region genelist in filter vue app ([#878](https://github.com/ahujameg/varfish-server/issues/878), [#879](https://github.com/ahujameg/varfish-server/issues/879)) ([#882](https://github.com/ahujameg/varfish-server/issues/882)) ([fc5e7cb](https://github.com/ahujameg/varfish-server/commit/fc5e7cbca711607d7d7497f9f9f56e9bd750cd33))
+* genotype criteria quick preset can now be applied ([#856](https://github.com/ahujameg/varfish-server/issues/856)) ([625cf68](https://github.com/ahujameg/varfish-server/commit/625cf68e57a08e00f64a79bb6b1dfb8fa1a1447b))
+* igv button creates new empty tab ([#889](https://github.com/ahujameg/varfish-server/issues/889)) ([#894](https://github.com/ahujameg/varfish-server/issues/894)) ([98bf9ad](https://github.com/ahujameg/varfish-server/commit/98bf9addd9783c8fe2f312b95d19d936fd84ed63))
+* igv button in smallvariant results filter vue app ([#877](https://github.com/ahujameg/varfish-server/issues/877)) ([#881](https://github.com/ahujameg/varfish-server/issues/881)) ([7737f24](https://github.com/ahujameg/varfish-server/commit/7737f24dc8579fd11b403f0a392a713003cf4b7c))
+* make comments and flags work in SV filtration ([#867](https://github.com/ahujameg/varfish-server/issues/867)) ([#869](https://github.com/ahujameg/varfish-server/issues/869)) ([7b1de6c](https://github.com/ahujameg/varfish-server/commit/7b1de6cbcc34e2e05b83bf35ed1d537f7cef444a))
+* making IGV button in Vue.js SV filtration work ([#870](https://github.com/ahujameg/varfish-server/issues/870)) ([4f94a24](https://github.com/ahujameg/varfish-server/commit/4f94a2448609da490ce6bfd7a8fd735cbf24a0b6))
+* prioriziation with hpo terms not accepting omim terms ([#902](https://github.com/ahujameg/varfish-server/issues/902)) ([#903](https://github.com/ahujameg/varfish-server/issues/903)) ([1ad920b](https://github.com/ahujameg/varfish-server/commit/1ad920b102a03b7aaaa887ada89e7f48a8ca178d))
+* prioriziation with hpo terms not accepting omim terms pt2 ([#907](https://github.com/ahujameg/varfish-server/issues/907)) ([#908](https://github.com/ahujameg/varfish-server/issues/908)) ([aa18371](https://github.com/ahujameg/varfish-server/commit/aa183710ea65a813731ac9be937eaa43184f9a26))
+* quick preset dropdown is empty in vue app ([#891](https://github.com/ahujameg/varfish-server/issues/891)) ([#896](https://github.com/ahujameg/varfish-server/issues/896)) ([970edd7](https://github.com/ahujameg/varfish-server/commit/970edd7be13dc99d608334d6d28efa84923aead7))
+* quick preset dropdown is empty in vue app ([#900](https://github.com/ahujameg/varfish-server/issues/900)) ([#901](https://github.com/ahujameg/varfish-server/issues/901)) ([bce57c6](https://github.com/ahujameg/varfish-server/commit/bce57c6fdbaa0180927ab689da9f3badb080c2da))
+* quick presets in vue filter app ([#849](https://github.com/ahujameg/varfish-server/issues/849)) ([#862](https://github.com/ahujameg/varfish-server/issues/862)) ([1e956c9](https://github.com/ahujameg/varfish-server/commit/1e956c92aabfc7fee9caaefaec60f0034f5e2cc9))
+* removing dedup/repeat filter for SVs again ([#897](https://github.com/ahujameg/varfish-server/issues/897)) ([#915](https://github.com/ahujameg/varfish-server/issues/915)) ([7ea4f6c](https://github.com/ahujameg/varfish-server/commit/7ea4f6c0b994bd2ad212abc5ea6a2efdc8123c8d))
+
+
+### Reverts
+
+* quick preset dropdown is empty in vue app ([#891](https://github.com/ahujameg/varfish-server/issues/891)) ([#896](https://github.com/ahujameg/varfish-server/issues/896)) ([6bb0302](https://github.com/ahujameg/varfish-server/commit/6bb0302543504ae50fcfa5a31f511786a4845a07))
+
+
+### Documentation
+
+* fix admin_ingest.rst ([#917](https://github.com/ahujameg/varfish-server/issues/917)) ([3be1971](https://github.com/ahujameg/varfish-server/commit/3be1971873ac570e77a0538690bc2d7a13947541))
+* small fixes to admin ingest ([#918](https://github.com/ahujameg/varfish-server/issues/918)) ([f3f13bb](https://github.com/ahujameg/varfish-server/commit/f3f13bb2b5651f42bbcc528a6f7331ecf92ae1a4))
+
 ## v1.1.4
 
 ### Full Change List
