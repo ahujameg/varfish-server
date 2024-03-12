@@ -319,9 +319,23 @@ class CaseExporterTest(MehariMockerMixin, ExportTestBase):
             )
         self.assertEquals(content[3], "")
 
+    @patch("django.conf.settings.VARFISH_ENABLE_GESTALT_MATCHER", True)
+    @patch("django.conf.settings.VARFISH_ENABLE_PEDIA", True)
+    @patch("django.conf.settings.VARFISH_ENABLE_CADD", True)
+    @patch("django.conf.settings.VARFISH_ENABLE_CADA", True)
+    @patch("django.conf.settings.VARFISH_CADA_REST_API_URL", "https://cada.com")
+    @patch("django.conf.settings.VARFISH_CADD_REST_API_URL", "https://cadd.com")
+    @patch("django.conf.settings.VARFISH_PEDIA_REST_API_URL", "https://pedia.com")
     @patch("django.conf.settings.VARFISH_BACKEND_URL_MEHARI", "https://mehari.com")
     @Mocker()
     def test_export_xlsx(self, mock):
+        self.export_job.query_args["pedia_enabled"] = True
+        self.export_job.query_args["gm_enabled"] = True
+        self.export_job.query_args["patho_enabled"] = True
+        self.export_job.query_args["patho_score"] = "cadd"
+        self.export_job.query_args["prio_enabled"] = True
+        self.export_job.query_args["prio_algorithm"] = "CADA"
+        self.export_job.query_args["prio_hpo_terms"] = ["HP:0001234"]
         self._test_export_xlsx("refseq", mock)
 
     @patch("django.conf.settings.VARFISH_BACKEND_URL_MEHARI", "https://mehari.com")
