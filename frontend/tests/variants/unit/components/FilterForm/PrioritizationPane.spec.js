@@ -78,6 +78,36 @@ describe('FilterFormPrioritizationPane.vue', () => {
     expect(pediaEnabled.element.checked).toBe(false)
   })
 
+  test('prioritization prefilled enable pedia value', async () => {
+    const wrapper = shallowMount(FilterFormPrioritizationPane, {
+      props: {
+        csrfToken: 'fake token',
+        showFiltrationInlineHelp: false,
+        exomiserEnabled: true,
+        caddEnabled: true,
+        cadaEnabled: true,
+        prioEnabled: false,
+        prioAlgorith: 'hiphive-human',
+        prioHpoTerms: ['HP:0000245'],
+        prioGm: '',
+        photoFile: '',
+        pathoEnabled: false,
+        pathoScore: 'cadd',
+        gmEnabled: false,
+        pediaEnabled: false,
+      },
+    })
+
+    const pediaEnabled = wrapper.get('#pedia-enabled')
+
+    pediaEnabled.element.checked = true
+    await pediaEnabled.trigger('click')
+    await pediaEnabled.trigger('change')
+    await pediaEnabled.setChecked()
+
+    expect(pediaEnabled.element.checked).toBe(true)
+  })
+
   test('prioritization prefilled with help', () => {
     const wrapper = shallowMount(FilterFormPrioritizationPane, {
       props: {
@@ -97,7 +127,30 @@ describe('FilterFormPrioritizationPane.vue', () => {
       },
     })
 
-    expect(wrapper.findAll('.alert-secondary').length).toBe(2)
+    expect(wrapper.findAll('.alert-secondary').length).toBe(3)
+  })
+
+  test('prioritization prefilled with photo file path', () => {
+    const wrapper = shallowMount(FilterFormPrioritizationPane, {
+      props: {
+        csrfToken: 'fake token',
+        showFiltrationInlineHelp: true,
+        exomiserEnabled: true,
+        caddEnabled: true,
+        cadaEnabled: true,
+        prioEnabled: true,
+        prioAlgorith: 'hiphive-human',
+        prioHpoTerms: ['HP:0000245'],
+        prioGm: '',
+        photoFile: 'C://fake-path',
+        pathoEnabled: true,
+        pathoScore: 'cadd',
+        gmEnabled: true,
+        pediaEnabled: true,
+      },
+    })
+
+    expect(wrapper.props('photoFile')).toBe('C://fake-path')
   })
 
   test('prioritization prefilled with warning', () => {

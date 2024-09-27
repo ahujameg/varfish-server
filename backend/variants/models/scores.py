@@ -1,4 +1,5 @@
 """Code supporting scoring of variants by pathogenicity or phenotype."""
+
 import json
 import re
 import time
@@ -276,6 +277,7 @@ class RowWithPhenotypeScore(wrapt.ObjectProxy):
         else:
             return self.__wrapped__.__getitem__(key)
 
+
 class RowWithGestaltMatcherScore(wrapt.ObjectProxy):
     """Wrap a result row and add members for Gestalt Matcher score and rank."""
 
@@ -303,6 +305,7 @@ class RowWithGestaltMatcherScore(wrapt.ObjectProxy):
             return
         else:
             return self.__wrapped__.__getitem__(key)
+
 
 class RowWithPediaScore(wrapt.ObjectProxy):
     """Wrap a result row and add members for PEDIA score and rank."""

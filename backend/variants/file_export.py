@@ -36,7 +36,6 @@ from .models import (
     get_pedia_scores,
     prioritize_genes,
     prioritize_genes_gm,
-    prioritize_genes_pedia,
     unroll_extra_annos_result,
 )
 from .queries import (

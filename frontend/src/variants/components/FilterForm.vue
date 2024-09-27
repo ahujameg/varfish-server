@@ -64,6 +64,9 @@ var eventer = window[eventMethod]
 var messageEvent = eventMethod == 'attachEvent' ? 'onmessage' : 'message'
 var imageRes
 
+// Get the URL dynamically from Django settings
+const middlewareUrl = window.middlewareUrl
+
 // Listen to message from child window
 eventer(
   messageEvent,
@@ -71,7 +74,7 @@ eventer(
     var key = event.message ? 'jsonRes' : 'data'
     imageRes = event[key]
 
-    if (event.origin == 'http://127.0.0.1:7000') {
+    if (event.origin == middlewareUrl) {
       if (JSON.stringify(imageRes).includes('gene_entrez_id')) {
         variantQueryStore.querySettings.prio_gm = JSON.stringify(imageRes)
       } else if (JSON.stringify(imageRes).includes('ImageName')) {
@@ -293,6 +296,19 @@ const onSubmitCancelButtonClicked = () => {
             aria-labelledby="prioritization-tab"
           >
             <FilterFormPriotizationPane
+              v-model:pedia-enabled="
+                variantQueryStore.querySettings.pedia_enabled
+              "
+              v-model:patho-enabled="
+                variantQueryStore.querySettings.patho_enabled
+              "
+              v-model:patho-score="variantQueryStore.querySettings.patho_score"
+              :show-filtration-inline-help="
+                variantQueryStore.showFiltrationInlineHelp
+              "
+              :exomiser-enabled="variantQueryStore.exomiserEnabled"
+              :cadd-enabled="variantQueryStore.caddEnabled"
+              :cada-enabled="variantQueryStore.cadaEnabled"
               v-model:prio-enabled="
                 variantQueryStore.querySettings.prio_enabled
               "
@@ -311,19 +327,6 @@ const onSubmitCancelButtonClicked = () => {
               v-model:gm-enabled="
                 variantQueryStore.querySettings.gm_enabled
               "
-              v-model:pedia-enabled="
-                variantQueryStore.querySettings.pedia_enabled
-              "
-              v-model:patho-enabled="
-                variantQueryStore.querySettings.patho_enabled
-              "
-              v-model:patho-score="variantQueryStore.querySettings.patho_score"
-              :show-filtration-inline-help="
-                variantQueryStore.showFiltrationInlineHelp
-              "
-              :exomiser-enabled="variantQueryStore.exomiserEnabled"
-              :cadd-enabled="variantQueryStore.caddEnabled"
-              :cada-enabled="variantQueryStore.cadaEnabled"
             />
           </div>
           <div

@@ -134,6 +134,7 @@ LOCAL_APPS = [
     "ext_gestaltmatcher.apps.ExtGestaltmatcherConfig",
     # Legacy apps - not used anymore!
     "hgmd.apps.HgmdConfig",
+    "ext_gestaltmatcher.apps.ExtGestaltmatcherConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -545,6 +546,7 @@ VARFISH_CADA_REST_API_URL = env.str(
 # Enable PEDIA prioritization.
 VARFISH_ENABLE_PEDIA = env.bool("VARFISH_ENABLE_PEDIA", default=False)
 VARFISH_PEDIA_REST_API_URL = env.str("VARFISH_PEDIA_REST_API_URL", "http://127.0.0.1:9000/pedia")
+VARFISH_MIDDLEWARE_URL = env.str("VARFISH_MIDDLEWARE_URL", "http://127.0.0.1:7000")
 
 # Enable Gestalt-based prioritization.
 VARFISH_ENABLE_GESTALT_MATCHER = env.bool("VARFISH_ENABLE_GESTALT_MATCHER", default=False)
