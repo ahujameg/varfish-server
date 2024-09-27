@@ -198,6 +198,13 @@ class RowEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
+class RowEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return json.JSONEncoder.default(self, obj)
+
+
 class CaseFilter(FilterBase):
     """Class for storing query results for a single case."""
 
