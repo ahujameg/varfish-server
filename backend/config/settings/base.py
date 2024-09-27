@@ -134,7 +134,6 @@ LOCAL_APPS = [
     "ext_gestaltmatcher.apps.ExtGestaltmatcherConfig",
     # Legacy apps - not used anymore!
     "hgmd.apps.HgmdConfig",
-    "ext_gestaltmatcher.apps.ExtGestaltmatcherConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
